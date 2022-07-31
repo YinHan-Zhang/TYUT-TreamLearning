@@ -1,7 +1,11 @@
 # week 1
 
 # 从零开始Angel编译
-@[TOC]
+
+``踩了很多坑，记录一下，希望能帮助到大家一点吧``  
+**大家有遇到类似的问题，可以附在回答里面，把问题集中一下，群策群力解决问题快一点,谢谢大家啦!**
+
+
 
 ## 1. 下载VMware
 网上教程很多，我参考了这个教程，挺详细的[VMware安装教程](https://blog.csdn.net/weixin_45912291/article/details/108894737)
@@ -94,13 +98,20 @@ unzip angel-3.2.0-bin.zip
 
 * 参考链接里面提供了三种解决方案，各取所需
 
+**我目前还没完全解决这个问题**
+
 ### ubuntu卡死
 
-* 运行example的时候会卡死
+* 运行example的时候会卡死 ， 不要暴力关机重启，参考这个blog
 [解决卡死问题](https://blog.csdn.net/jiesunliu3215/article/details/108572153)
 
 
 ### 分配内存空间
 
 [分配内存](https://blog.csdn.net/Sun_study/article/details/125108945?spm=1001.2101.3001.6650.2&utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~default-2-125108945-blog-119840433.pc_relevant_multi_platform_whitelistv3&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~default-2-125108945-blog-119840433.pc_relevant_multi_platform_whitelistv3&utm_relevant_index=5)
+
+####三个输入框解释：
+* 第一个框从当前硬盘空间中索取的空间
+* 第二个框当前硬盘的新空间
+* 第三个框留取的剩余空间（自动计算，不用动）
 
