@@ -115,3 +115,33 @@ unzip angel-3.2.0-bin.zip
 * 第二个框当前硬盘的新空间
 * 第三个框留取的剩余空间（自动计算，不用动）
 
+## 运行example报错
+* 包没有下载下来
+
+![6d5b9d7e56ad8c3eb0ad8f6c81bde10](https://user-images.githubusercontent.com/89371343/182029578-3be2e6e2-79f8-492a-9317-d1ea8f95e91a.jpg)
+
+
+* maven插件没下载下来
+![78f27f32994cce0e7b9565662d09dca](https://user-images.githubusercontent.com/89371343/182029540-8ba927b3-5acc-4449-9d5b-41353e30b50a.jpg)
+
+* idea自动maven没有setting
+
+![b3de37807ffffccb53eff98e380035b](https://user-images.githubusercontent.com/89371343/182029620-c7e1a465-05f7-4ac9-93c4-74eedfbb297a.jpg)
+
+
+- 尝试解决1：  
+
+![f7c3be3445b5b029415b6fae301d8b8](https://user-images.githubusercontent.com/89371343/182029588-7d8a266b-e6d8-48bd-b95d-459220d282c8.jpg)
+
+-尝试解决2：查看路径  
+
+![image](https://user-images.githubusercontent.com/89371343/182029662-bbc112e9-4e9b-4b2c-bb9b-fe125031ab5d.png)
+
+- 尝试解决3：自己配置maven3.8.6
+
+![image](https://user-images.githubusercontent.com/89371343/182029738-d3421d22-5c12-45e4-a83b-454a3d2e1993.png)
+
+bug未完待续... 
+
+
+
