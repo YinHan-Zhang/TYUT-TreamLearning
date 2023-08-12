@@ -31,21 +31,21 @@ Miniconda 下载地址：[https://docs.conda.io/en/latest/miniconda.html](https:
 - Just Me (recommended) (无需管理员权限)
 - Clear the package cache upon completion
 
-![](C:\Users\yangf\Desktop\DW_Learning\TYUT-TreamLearning\Note\yangfeifan_note\picture\pic_01.png)
+![](/picture/pic_01.png)
 
 #### (2)点击安装程序，选择路径
 
-![](C:\Users\yangf\Desktop\DW_Learning\TYUT-TreamLearning\Note\yangfeifan_note\picture\pic_02.png)
+![](/picture/pic_02.png)
 
-![](C:\Users\yangf\Desktop\DW_Learning\TYUT-TreamLearning\Note\yangfeifan_note\picture\pic_03.png)
+![](/picture/pic_03.png)
 
 * **环境变量选择(PATH)：**在这一步不建议勾选第二个环境变量选项，建议在之后手动添加环境变量以防止环境变量污染的问题。
 * 一路next安装完成
 * 检验是否安装成功，在开始菜单出，左击 Anaconda Prompt
 
-![](C:\Users\yangf\Desktop\DW_Learning\TYUT-TreamLearning\Note\yangfeifan_note\picture\pic_04.png)
+![](/picture/pic_04.png)
 
-![](C:\Users\yangf\Desktop\DW_Learning\TYUT-TreamLearning\Note\yangfeifan_note\picture\pic_05.png)
+![](/picture/pic_05.png)
 
 * 打开后，左边有 (base)，即安装成功
 
@@ -54,17 +54,17 @@ Miniconda 下载地址：[https://docs.conda.io/en/latest/miniconda.html](https:
 * 这里我使用的是win11（win10系统的同学可以自己找一下高级选项，或者询问度娘）
 * **windows图标右键**-->**系统** -->**高级系统设置**
 
-![](C:\Users\yangf\Desktop\DW_Learning\TYUT-TreamLearning\Note\yangfeifan_note\picture\pic_06.png)
+![](/picture/pic_06.png)
 
-![](C:\Users\yangf\Desktop\DW_Learning\TYUT-TreamLearning\Note\yangfeifan_note\picture\pic_07.png)
+![](/picture/pic_07.png)
 
 * 上方选项卡“高级” --> “环境变量”按钮
 
-![](C:\Users\yangf\Desktop\DW_Learning\TYUT-TreamLearning\Note\yangfeifan_note\picture\pic_08.png)
+![](/picture/pic_08.png)
 
 * 对“Path”进行设置
 
-![](C:\Users\yangf\Desktop\DW_Learning\TYUT-TreamLearning\Note\yangfeifan_note\picture\pic_09.png)
+![](/picture/pic_09.png)
 
 * 新建对应环境变量
 * **注意：我的miniconda安装路径为“`D:\MiniConda`”，设置时修改为自己的安装路径**
@@ -89,11 +89,11 @@ conda config --set show_channel_urls yes
 * 第一行代码添加清华源    第二行代码生成".condarc"文件
 * 打开`C:\Users\"用户名"\.condarc`找到该文件
 
-![](C:\Users\yangf\Desktop\DW_Learning\TYUT-TreamLearning\Note\yangfeifan_note\picture\pic_11.png)
+![](/picture/\pic_11.png)
 
 * 将第一步中清华源下载界面的内容复制进去然后保存
 
-![](C:\Users\yangf\Desktop\DW_Learning\TYUT-TreamLearning\Note\yangfeifan_note\picture\pic_12.png)
+![](/picture/pic_12.png)
 
 * 在PowerShell中输入以下代码清除索引缓存，就可以使用了
 
@@ -112,13 +112,13 @@ conda --version
 
 * 若出现以下界面，说明安装成功
 
-![](C:\Users\yangf\Desktop\DW_Learning\TYUT-TreamLearning\Note\yangfeifan_note\picture\pic_13.png)
+![](/picture/pic_13.png)
 
 #### (6)pip换源
 
 * pip 是Python安装第三方包的管理工具，该工具提供了对Python 包的查找、下载、安装、卸载的功能。我们安装完conda环境pip就是最新的了
 
-![](C:\Users\yangf\Desktop\DW_Learning\TYUT-TreamLearning\Note\yangfeifan_note\picture\pic_14.png)
+![](/picture/pic_14.png)
 
 * 复制文本后，在 **Anaconda Powershell Prompt** 中粘贴运行创建pip.ini文件
 
@@ -136,9 +136,9 @@ index-url = https://pypi.tuna.tsinghua.edu.cn/simple
 trusted-host = https://pypi.tuna.tsinghua.edu.cn
 ```
 
-![](C:\Users\yangf\Desktop\DW_Learning\TYUT-TreamLearning\Note\yangfeifan_note\picture\pic_18.png)
+![](/picture/pic_18.png)
 
-![](C:\Users\yangf\Desktop\DW_Learning\TYUT-TreamLearning\Note\yangfeifan_note\picture\pic_17.png)
+![](/picture/pic_17.png)
 
 #### (7)创建与激活conda环境
 
@@ -162,9 +162,9 @@ conda create -n Datawhale python=3.11
 conda activate Datawhale
 ```
 
-![](C:\Users\yangf\Desktop\DW_Learning\TYUT-TreamLearning\Note\yangfeifan_note\picture\pic_15.png)
+![](/picture/pic_15.png)
 
-![](C:\Users\yangf\Desktop\DW_Learning\TYUT-TreamLearning\Note\yangfeifan_note\picture\pic_16.png)
+![](/picture/pic_16.png)
 
 * 如果需要删除某个 Conda 环境：
 
@@ -183,7 +183,7 @@ conda remove -n Datawhale --all # 删除整个环境
 
 * 进入虚拟环境（这里用的刚刚的Datawhale环境）
 
-![](C:\Users\yangf\Desktop\DW_Learning\TYUT-TreamLearning\Note\yangfeifan_note\picture\pic_22.png)
+![](/picture/pic_22.png)
 
 * 安装Jupyter
 
@@ -193,15 +193,15 @@ conda install jupyter notebook
 
 * 安装成功以后菜单会出现notebook
 
-![](C:\Users\yangf\Desktop\DW_Learning\TYUT-TreamLearning\Note\yangfeifan_note\picture\pic_24.png)
+![](/picture/pic_24.png)
 
 * 点击运行即可
 
-![](C:\Users\yangf\Desktop\DW_Learning\TYUT-TreamLearning\Note\yangfeifan_note\picture\pic_23.png)
+![](/picture/pic_23.png)
 
 * 运行成功会自动跳转到浏览器
 
-![](C:\Users\yangf\Desktop\DW_Learning\TYUT-TreamLearning\Note\yangfeifan_note\picture\pic_25.png)
+![](/picture/pic_25.png)
 
 ### 2.2pip安装Jupyter
 
@@ -211,7 +211,7 @@ conda install jupyter notebook
   pip install jupyter
   ```
 
-![](C:\Users\yangf\Desktop\DW_Learning\TYUT-TreamLearning\Note\yangfeifan_note\picture\pic_19.png)
+![](/picture/pic_19.png)
 
 * 在指定路径输入会跳转到浏览器
 
@@ -219,9 +219,9 @@ conda install jupyter notebook
   jupyter-notebook
   ```
 
-![](C:\Users\yangf\Desktop\DW_Learning\TYUT-TreamLearning\Note\yangfeifan_note\picture\pic_20.png)
+![](/picture/pic_20.png)
 
-![](C:\Users\yangf\Desktop\DW_Learning\TYUT-TreamLearning\Note\yangfeifan_note\picture\pic_21.png)
+![](/picture/pic_21.png)
 
 * 结束学习时关掉命令行窗口或者使用：
 
@@ -241,11 +241,11 @@ conda install jupyter notebook
 jupyter notebook --generate-config
 ```
 
-![](C:\Users\yangf\Desktop\DW_Learning\TYUT-TreamLearning\Note\yangfeifan_note\picture\pic_26.png)
+![](/picture/pic_26.png)
 
 * 打开文件，CTRL + F 找到notebook_dir，删除注释符号，并将目标文件夹路径复制黏贴到后面的`''`中。保存文件。
 
-![](C:\Users\yangf\Desktop\DW_Learning\TYUT-TreamLearning\Note\yangfeifan_note\picture\pic_27.png)
+![](/picture/pic_27.png)
 
 ***python相关包举例***
 
