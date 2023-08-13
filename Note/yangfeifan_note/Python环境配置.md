@@ -31,21 +31,21 @@ Miniconda 下载地址：[https://docs.conda.io/en/latest/miniconda.html](https:
 - Just Me (recommended) (无需管理员权限)
 - Clear the package cache upon completion
 
-![](/picture/pic_01.png)
+![pic_01](https://s2.loli.net/2023/08/13/4DchQBJvX3HL7qs.png)
 
 #### (2)点击安装程序，选择路径
 
-![](/picture/pic_02.png)
-
-![](/picture/pic_03.png)
+![pic_02](https://s2.loli.net/2023/08/13/2kbiIpSgVDoNyGe.png)
 
 * **环境变量选择(PATH)：**在这一步不建议勾选第二个环境变量选项，建议在之后手动添加环境变量以防止环境变量污染的问题。
 * 一路next安装完成
 * 检验是否安装成功，在开始菜单出，左击 Anaconda Prompt
 
-![](/picture/pic_04.png)
+![pic_03](https://s2.loli.net/2023/08/13/jJnXYCzBZs6Wkb3.png)
 
-![](/picture/pic_05.png)
+![pic_04](https://s2.loli.net/2023/08/13/I6jxHmTUMSnCa9A.png)
+
+![pic_05](https://s2.loli.net/2023/08/13/vVmenHqizCAb6j1.png)
 
 * 打开后，左边有 (base)，即安装成功
 
@@ -54,17 +54,19 @@ Miniconda 下载地址：[https://docs.conda.io/en/latest/miniconda.html](https:
 * 这里我使用的是win11（win10系统的同学可以自己找一下高级选项，或者询问度娘）
 * **windows图标右键**-->**系统** -->**高级系统设置**
 
-![](/picture/pic_06.png)
+![pic_06](https://s2.loli.net/2023/08/13/e9oQSXd5hqvGbuf.png)
 
-![](/picture/pic_07.png)
+![pic_07](https://s2.loli.net/2023/08/13/nfp5tDmGYXTgVhI.png)
 
 * 上方选项卡“高级” --> “环境变量”按钮
 
-![](/picture/pic_08.png)
+![08](https://s2.loli.net/2023/08/13/SpIBNswrqVnAQGJ.png)
 
 * 对“Path”进行设置
 
-![](/picture/pic_09.png)
+![09](https://s2.loli.net/2023/08/13/5q8ogwLKh67FaSb.png)
+
+![10](https://s2.loli.net/2023/08/13/ZgSeyR5rYVWQDoF.png)
 
 * 新建对应环境变量
 * **注意：我的miniconda安装路径为“`D:\MiniConda`”，设置时修改为自己的安装路径**
@@ -89,11 +91,11 @@ conda config --set show_channel_urls yes
 * 第一行代码添加清华源    第二行代码生成".condarc"文件
 * 打开`C:\Users\"用户名"\.condarc`找到该文件
 
-![](/picture/\pic_11.png)
+![11](https://s2.loli.net/2023/08/13/ht8Q2sjwdEPGr1B.png)
 
 * 将第一步中清华源下载界面的内容复制进去然后保存
 
-![](/picture/pic_12.png)
+![12](https://s2.loli.net/2023/08/13/yCH8tijhaw2MlfT.png)
 
 * 在PowerShell中输入以下代码清除索引缓存，就可以使用了
 
@@ -112,13 +114,13 @@ conda --version
 
 * 若出现以下界面，说明安装成功
 
-![](/picture/pic_13.png)
+![13](https://s2.loli.net/2023/08/13/d1uRmvMxwWYNbi4.png)
 
 #### (6)pip换源
 
 * pip 是Python安装第三方包的管理工具，该工具提供了对Python 包的查找、下载、安装、卸载的功能。我们安装完conda环境pip就是最新的了
 
-![](/picture/pic_14.png)
+![14](https://s2.loli.net/2023/08/13/PblZcwr6ySuCG9a.png)
 
 * 复制文本后，在 **Anaconda Powershell Prompt** 中粘贴运行创建pip.ini文件
 
@@ -136,9 +138,9 @@ index-url = https://pypi.tuna.tsinghua.edu.cn/simple
 trusted-host = https://pypi.tuna.tsinghua.edu.cn
 ```
 
-![](/picture/pic_18.png)
+![18](https://s2.loli.net/2023/08/13/4MNtYc5hRp7rxBs.png)
 
-![](/picture/pic_17.png)
+![17](https://s2.loli.net/2023/08/13/q2fEA7Jo8DOCWIv.png)
 
 #### (7)创建与激活conda环境
 
@@ -162,9 +164,9 @@ conda create -n Datawhale python=3.11
 conda activate Datawhale
 ```
 
-![](/picture/pic_15.png)
+![15](https://s2.loli.net/2023/08/13/1ihxb84tWKPQyEr.png)
 
-![](/picture/pic_16.png)
+![16](https://s2.loli.net/2023/08/13/2I7u1BkmOFezDjx.png)
 
 * 如果需要删除某个 Conda 环境：
 
@@ -183,7 +185,7 @@ conda remove -n Datawhale --all # 删除整个环境
 
 * 进入虚拟环境（这里用的刚刚的Datawhale环境）
 
-![](/picture/pic_22.png)
+![22](https://s2.loli.net/2023/08/13/Ofpeci4ghE2aw6l.png)
 
 * 安装Jupyter
 
@@ -193,15 +195,15 @@ conda install jupyter notebook
 
 * 安装成功以后菜单会出现notebook
 
-![](/picture/pic_24.png)
+![24](https://s2.loli.net/2023/08/13/bU57LlCTjBS4Pwc.png)
 
 * 点击运行即可
 
-![](/picture/pic_23.png)
+![23](https://s2.loli.net/2023/08/13/uHqntJpZriBek4R.png)
 
 * 运行成功会自动跳转到浏览器
 
-![](/picture/pic_25.png)
+![25](https://s2.loli.net/2023/08/13/prKW1od4y85LOej.png)
 
 ### 2.2pip安装Jupyter
 
@@ -211,7 +213,7 @@ conda install jupyter notebook
   pip install jupyter
   ```
 
-![](/picture/pic_19.png)
+![19](https://s2.loli.net/2023/08/13/YTOh9enkJ5X4f2L.png)
 
 * 在指定路径输入会跳转到浏览器
 
@@ -219,9 +221,9 @@ conda install jupyter notebook
   jupyter-notebook
   ```
 
-![](/picture/pic_20.png)
+![20](https://s2.loli.net/2023/08/13/PNsDKfQyVGBoFiO.png)
 
-![](/picture/pic_21.png)
+![21](https://s2.loli.net/2023/08/13/C6NxUkqV7JWLIdY.png)
 
 * 结束学习时关掉命令行窗口或者使用：
 
@@ -241,11 +243,11 @@ conda install jupyter notebook
 jupyter notebook --generate-config
 ```
 
-![](/picture/pic_26.png)
+![26](https://s2.loli.net/2023/08/13/8wJmRCO6jWGXMFu.png)
 
 * 打开文件，CTRL + F 找到notebook_dir，删除注释符号，并将目标文件夹路径复制黏贴到后面的`''`中。保存文件。
 
-![](/picture/pic_27.png)
+![27](https://s2.loli.net/2023/08/13/E8zVDw2ihPqMctQ.png)
 
 ***python相关包举例***
 
