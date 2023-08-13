@@ -14,7 +14,8 @@
 
 ## Contest_baseline
  - 赛道name
-    - baseline code 
+    - baseline code
+    - 背景知识、相关算法讲解
 
 
 ---
