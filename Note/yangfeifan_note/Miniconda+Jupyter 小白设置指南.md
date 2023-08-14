@@ -58,7 +58,7 @@ Miniconda 下载地址：[https://docs.conda.io/en/latest/miniconda.html](https:
 
 ![pic_07](https://s2.loli.net/2023/08/13/nfp5tDmGYXTgVhI.png)
 
-* 上方选项卡“高级” --> “环境变量”按钮
+* 上方选项卡“**高级**” --> “**环境变量**”按钮
 
 ![08](https://s2.loli.net/2023/08/13/SpIBNswrqVnAQGJ.png)
 
@@ -251,29 +251,27 @@ jupyter notebook --generate-config
 
 ***python相关包举例***
 
-- 科学计算相关
+数据挖掘：
 
-- - numpy
-  - pandas
-  - scipy
-  - scikit-learn
+- scikit-learn
+- numpy
+- pandas
+- tqdm
+- lightgbm (数据挖掘模型)
 
-- 绘图相关
+CV：
 
-- - matplotlib
-  - seaborn
-
-- Jupyter Notebook相关
-
-- - jupyter
-  - notebook
-  - ipykernel
-  - nb_conda_kernels
-
-- 其他
-
-- - beautifulsoup4
-  - reportlab
+- nibabel
+- pillow
 
 ## 3.vscode安装
 
+* 找到官网（[https://code.visualstudio.com/](https://link.zhihu.com/?target=https%3A//code.visualstudio.com/)）下载即可。
+
+## 4.云端环境使用
+
+- 百度飞桨 AI Studio [https://aistudio.baidu.com/aistudio/index](https://gitee.com/link?target=https%3A%2F%2Faistudio.baidu.com%2Faistudio%2Findex)
+- 阿里天池 PAI DSW [https://tianchi.aliyun.com/notebook-ai](https://gitee.com/link?target=https%3A%2F%2Ftianchi.aliyun.com%2Fnotebook-ai)
+- Kaggle [https://www.kaggle.com/code](https://gitee.com/link?target=https%3A%2F%2Fwww.kaggle.com%2Fcode)
+- Google Colab [https://colab.research.google.com/](https://gitee.com/link?target=https%3A%2F%2Fcolab.research.google.com%2F)
+- Sagemaker Studio Lab [https://studiolab.sagemaker.aws/](https://gitee.com/link?target=https%3A%2F%2Fstudiolab.sagemaker.aws%2F)
