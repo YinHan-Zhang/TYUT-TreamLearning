@@ -1589,11 +1589,10 @@ if __name__ == '__main__':
 * 在这次夏令营NLP方向的学习中，我算是正式解了解决二分类问题的基本流程，并且学会了比较主流的预训练+微调的模式，也对transformer有了认识，感谢datawhale给我们提供的详细的教程，希望有一天我也可以成为其中的一份子，为开源社区做出自己的贡献。
 
 
-
-[1]: https://tvq27xqm30o.feishu.cn/docx/V2gfdvAMGoxgozx0OkMchp4znnf	"净好大佬的笔记"
-[2]: https://datawhaler.feishu.cn/docx/HGiNdHedwoAtcVx0kkScwaI3nKc	"AI夏令营-NLP实践教程"
-
-[3]: https://tvq27xqm30o.feishu.cn/docx/U1fzdqdE0o6SWnxixyrc3gnLnJg	"深度学习topline"
+>本文引用
+>>"净好大佬的笔记" : https://tvq27xqm30o.feishu.cn/docx/V2gfdvAMGoxgozx0OkMchp4znnf  
+>"AI夏令营-NLP实践教程" : https://datawhaler.feishu.cn/docx/HGiNdHedwoAtcVx0kkScwaI3nKc	   
+>"深度学习topline": https://tvq27xqm30o.feishu.cn/docx/U1fzdqdE0o6SWnxixyrc3gnLnJg	
 
 
 
