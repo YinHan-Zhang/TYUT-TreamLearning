@@ -1,5 +1,7 @@
 # learn-python-the-smart-way-v2
 
+[TOC]
+
 ## - Chapter1
 
 ### 1.Comment
@@ -127,8 +129,6 @@ is Open.
 - The Zen of Python
 - Math Floor
 
-
-
 这里对提高题进行解读
 
 #### - The Zen of Python
@@ -208,3 +208,296 @@ print(math.floor(a))
 ```
 
 ![image-20231016215843044](https://s2.loli.net/2023/10/16/YPWyuNqlKb6X2V1.png)
+
+
+
+## - Chapter2
+
+* ## Data Types and Operators
+
+### 1.常用内置类型 Builtin Types
+
+骆师傅在这节给我们讲了基本数据类型：
+
+- 整数 Integer（int）
+- 浮点数 Float
+- 布尔值 Boolean（bool）
+- 类型 Type（是的，“类型”也是种类型！）
+
+![image-20231017225728467](https://s2.loli.net/2023/10/17/yhka93KrNjvCTeJ.png)
+
+其他常见的类型有：
+
+- 字符串 String（str）
+- 列表 List
+- 元组 Tuple
+- 集合 Set
+- 字典 Dictionary（dict，或者你可以叫它 `映射 map`）
+- 复数 Complex Number（complex)
+- 函数 Function
+- 模块 Module
+
+```python
+print(type("2.2"))       # str (string or text)
+print(type([1,2,3]))     # list
+print(type((1,2,3)))     # tuple
+print(type({1,2}))       # set
+print(type({1:42}))      # dict (dictionary or map)
+print(type(2+3j))        # complex  (complex number)
+print(type(f))           # function
+print(type(math))        # module
+```
+
+### 2.常用内置常数 Builtin Constants
+
+Python的内置常数是指在Python语言中已经预先定义好的一些常数值，可以直接在代码中使用。以下是一些常用的内置常数：
+
+1. True：表示布尔类型的真值，值为True。
+2. False：表示布尔类型的假值，值为False。
+3. None：表示一个空值或者空对象。
+4. Ellipsis：表示省略号，用于切片操作时表示省略部分。
+5. NotImplemented：表示某个方法或操作尚未实现。
+
+另外，还有一些和数学相关的内置常数和函数：
+
+1. pi：表示圆周率 π，约等于 3.14159。
+2. e：表示自然对数的底数 e，约等于 2.71828。
+3. inf：表示正无穷大，用于表示数值中的正无穷大。
+4. nan：表示“Not a Number”，用于表示数值中的非法数值或未定义的结果。
+5. abs(x)：返回 x 的绝对值。
+6. min(x1, x2, …)：返回参数中的最小值。
+7. max(x1, x2, …)：返回参数中的最大值。
+8. round(x, n)：将 x 四舍五入到小数点后 n 位。
+
+### 3.常用内置运算符 Builtin Operators
+
+- 算术：`+`, `-`, `*`, `@`, `/`, `//`, `**`, `%`, `-` (一元算符), `+` (一元算符)
+- 关系：`<`, `<=`, `>=`, `>`, `==`, `!=`
+- 赋值： `+=`, `-=`, `*=`, `/=`, `//=`, `**=`, `%=`
+- 逻辑：`and`, `or`, `not`
+
+这里骆师傅重点讲了一下**整除和取模运算**
+
+#### 整除 Integer Division (//)
+
+`/` 指的是**浮点数**除法，它的结果是一个浮点数
+
+`//` 指的是**整除**除法，它的计算结果是整数，舍弃余数
+
+![image-20231017231206554](https://s2.loli.net/2023/10/17/7WjOL6yBlhcbvXE.png)
+
+#### 模运算或余数运算符 (%)
+
+`%` 代表模运算（取余），结果为商的余数
+
+公式如下：
+$$
+a \mod b \iff a - (a \mid b) \times b
+$$
+这里要注意对0取模会出错
+
+![image-20231017232333426](https://s2.loli.net/2023/10/17/lXYcprMU6sC2xng.png)
+
+### 4.类型影响语义 Types Affect Semantics
+
+运算符的运作方式会受到**运算数据的类型**的影响
+
+```python
+print(3 * 2)  # 输出 6，将整数3与整数2相乘
+
+print(3 * "p2s")  # 输出 p2sp2sp2s，将字符串 "p2s" 重复3次
+
+print(3 + 2)  # 输出 5，将整数3与整数2相加
+
+print("Data" + "whale")  # 输出 Datawhale，将字符串 "Data" 与字符串 "whale" 连接
+
+print(3 + "p2s")  # 报错，无法将整数和字符串相加
+```
+
+### 5.短路求值 Short-Circuit Evaluation
+
+逻辑运算参照表
+
+| X     | Y     | X and Y | X or Y | not X | not Y |
+| :---- | :---- | :------ | :----- | :---- | :---- |
+| True  | True  | True    | True   | False | False |
+| True  | False | False   | True   | False | True  |
+| False | False | False   | False  | True  | True  |
+| False | True  | False   | True   | True  | False |
+
+```python
+# 我们先来定义一些函数
+def yes():
+    return True
+
+def no():
+    return False
+
+def crash():
+    return 1/0 # 会崩溃！
+
+# 执行下列函数
+print(no() and crash()) # 成功运行！
+
+print(crash() and no()) # 崩溃了！
+
+print (yes() and crash()) # 因为上一行崩溃了，所以这行不会被运行，就是运行也会因为短路求值崩溃
+
+```
+
+在第一个输出语句中，由于逻辑运算符 `and` 的短路求值特性，当左侧的表达式 `no()` 返回 `False` 时，右侧的 `crash()` 不会被执行，因此不会发生异常，最终结果为 `False`。
+
+在第二个输出语句中，表达式 `crash()` 由于存在除零操作而导致异常抛出，程序崩溃，代码无法继续向下执行，因此该语句会导致异常。
+
+在第三个输出语句中，由于前面的 `crash()` 引发异常，导致短路求值，不会执行后面的 `yes()` 函数，因此这一行的代码不会被运行。
+
+```python
+# 当我们换成or
+print(yes() or crash()) # 成功运行
+
+# print(crash() or yes()) # 崩溃了
+
+print(no() or crash())  # 因为上一行崩溃了，所以这行不会被运行，就是运行也会因为短路求值崩溃
+```
+
+
+
+类似的，当我们换个例子
+
+![image-20231017235553016](https://s2.loli.net/2023/10/17/M2bnRlQD5WmiKsz.png)
+
+这里由于逻辑运算符 `and` 的短路求值特性，第二行只调用了一个函数便输出了`False`。
+
+### 6.type() vs isinstance()
+
+骆师傅在这里讲`type()` 和 `isinstance()`函数，引出了两个观点
+
+- `isinstance()` 比 `type()` 更具有 `稳健性（Robustness）`，具体可以体现在前者包含了**复数**
+
+  ```python
+  import numbers
+  def isNumber(x):
+      return isinstance(x, numbers.Number) # 可以应对任何类型的数字
+  ```
+
+- 这种做法更加符合 `面向对象编程` 中 `继承（inheritance）` 的思想
+
+### 7.总结 Summary
+
+- Python 的类型系统很丰富，可以**使用 `type()` 查看对应的类型**
+- 常数类型的**值是不可修改的**
+- 除法操作**默认是浮点数除法**，整除操作需要使用 `//`
+- 运算符之间有运算优先级，运算符作用于不同对象之间的效果是不同的
+- 在进行逻辑判断时，会使用**短路求值**
+
+### 8.作业Homework
+
+必做题：
+
+- Is Number
+- Egg Cartons
+- Number of Pool Balls
+
+提高题：
+
+- Number of Pool Ball Rows
+- Get Kth Digit
+
+这里对提高题进行解读
+
+#### - Number of Pool Ball Rows
+
+##### **题目描述**
+
+本题是 [`Number of Pool Ball Rows`](https://hydro.ac/d/datawhale_p2s/p/P1013) 的相反操作。台球按行排列，其中第一行包含 1 个台球，每行最多可比前一行多包含 1 个台球。例如，3 行最多包含 6 个台球 （1+2+3）。输入一个 `int` 整数 `n`，代表台球总数，要求编写程序，输出 `n` 代表台球的总行数
+
+**输入格式**
+
+一个 `int` 整数 n，代表台球总数。
+
+**输出格式**
+
+一个 `int` 整数，代表台球的总行数.
+
+**输入样例**
+
+```bash
+6
+```
+
+**输出样例**
+
+```bash
+3
+```
+
+**解题思路**
+
+跟第三题相反，这题要求通过总台球数n，求出台球的总行数。难点在于如何不用循环，只用算术方法求得行数
+
+在这里我第一次没有AC，原因是没有考虑到4个球的时候应该是摆了3行的，所以应该向上取整，使用`ceil`函数
+
+##### 代码如下
+
+```python
+import math
+import ast
+n = ast.literal_eval(input())
+# 现在程序中有一个整数，n
+
+total_rows = math.ceil((math.sqrt(8 * n + 1) - 1) / 2)
+print(total_rows)
+```
+
+#### - Get Kth Digit
+
+##### **题目描述**
+
+我们会输入 2 个非负的 `int` 整数 `n` 和 `k` 。你需要编写程序，返回整数 `n` 从右开始数的第 `k` 个数字（下标从 `0` 开始）
+
+**输入格式**
+
+2 个非负的 `int` 整数 `n` 和 `k`，以空格分隔。
+
+**输出格式**
+
+1 个 `int` 整型数
+
+**输入样例**
+
+```bash
+789,1
+```
+
+**输出样例**
+
+```bash
+8
+```
+
+**解题思路**
+
+本题的难点在于，不允许使用字符串索引（如 `n[k]`）的情况下返回下标为k的整数n
+
+我们可以将数字k看作权值，例如0就是个位，1就是十位，那么问题就可以转化为求整数n的某一位数字了
+
+##### 代码如下
+
+```python
+import math
+import ast
+n, k = ast.literal_eval(input())
+# 现在程序中有两个整数，n, k
+
+kth_digit = math.floor(n//10**k)%10
+print(kth_digit)
+```
+
+这次的题目虽然比较基础，但是不用循环和数组完成也有一定的难度，对小白来说还是很有挑战性的。
+
+## - Chapter3
+
+
+
+
+
