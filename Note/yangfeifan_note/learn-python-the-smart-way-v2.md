@@ -213,7 +213,7 @@ print(math.floor(a))
 
 ## - Chapter2
 
-* ## Data Types and Operators
+> Chapter 2 数据类型和操作 Data Types and Operators
 
 ### 1.常用内置类型 Builtin Types
 
@@ -390,7 +390,7 @@ print(no() or crash())  # 因为上一行崩溃了，所以这行不会被运行
 - 运算符之间有运算优先级，运算符作用于不同对象之间的效果是不同的
 - 在进行逻辑判断时，会使用**短路求值**
 
-### 8.作业Homework
+### 8.作业 Homework
 
 必做题：
 
@@ -497,7 +497,323 @@ print(kth_digit)
 
 ## - Chapter3
 
+> Chapter 3 变量与函数 Variables and Functions
 
+### 1.变量 Variables
+
+* A variable is a named value that references or stores a piece of data.
+* 变量是一个**标签**，它所指代的是一段数据，使用 `=` 来对这段数据的区域进行**赋值**
+
+变量命名规则：
+
+- **必须以字母或下划线（`_`）开头**
+- 命名可由字母、数字和下划线组成
+- **大小写敏感**
+- 尽量**避免使用保留字**命名
+
+保留字：
+
+```python
+import keyword
+keyword.kwlist
+```
+
+> ['False', 'None', 'True', 'and', 'as', 'assert', 'async', 'await', 'break', 'class', 'continue', 'def', 'del', 'elif', 'else', 'except', 'finally', 'for', 'from', 'global', 'if', 'import', 'in', 'is', 'lambda',
+>
+> ...
+>
+>  'return', 'try', 'while', 'with', 'yield']
+
+多变量赋值：
+
+```python
+# 
+a = b = c = 2
+print(f"a={a}, b={b}, c={c}") # a=2, b=2, c=2
+# 解包
+a, b, c = 1, 2, 6
+print(f"a={a}, b={b}, c={c}") # a=1, b=2, c=6
+```
+
+### 2.函数 Functions
+
+> A function is a procedure (a sequence of statements) stored under a name that can be used repeatedly by calling the name.
+
+- 函数是一个名字，代表一串代码序列（流程、过程）
+- 函数由两个部分组成：**header**和**body**
+  - `header` 用于定义函数接口（函数 **名称** 与 **参数**）
+  - `body` 包含函数所需要执行的操作
+
+#### - header
+
+`header` 用于定义函数的**名称**和**参数**
+
+- 当函数被**调用**时，参数将会作为变量被提供给函数的 `body` 部分
+- 可以提供多个参数（用逗号 `,` 分隔），也可以不提供参数（0 个）
+- `header` 以冒号（`:`）结尾，代表后面会跟着 `body` 部分
+
+#### - body
+
+`body` 包含函数执行的语句（`statement`）
+
+- 语句需要**缩进**（由 Code Style Guide 决定）
+- 当语句**不再缩进，函数部分结束**
+- 一般会使用 `return` 语句，来让函数返回其结果，但不是必须的
+
+下面是一些函数的例子：
+
+```python
+# 调用示例函数 double() 会返回一个值（2 * x）
+def double(x):
+    print("我在一个名叫 “double” 函数里！")
+    return 2 * x
+
+print(double(2)) # 会输出 4
+
+# 无参数
+def g():
+    return 42
+
+print(g()) # 返回 42
+
+# 三个参数
+def f(x, y, z):
+    return x + y + z
+
+print(f(1, 3, 2)) # 返回 6
+```
+
+值得一提的是，python函数支持多返回值，例如：
+
+```python
+# 1.使用元组返回多个值
+def get_name_and_age():
+    name = "Alice"
+    age = 25
+    return name, age
+
+result = get_name_and_age()  # 返回一个元组 ('Alice', 25)
+
+name, age = get_name_and_age()  # 使用解包将返回值分配给多个变量
+print(name)  # 输出 'Alice'
+print(age)  # 输出 25
+
+# 2.使用解包将返回的多个值分配给多个变量
+def get_coordinates():
+    x = 10
+    y = 20
+    z = 30
+    return x, y, z
+
+x, y, z = get_coordinates()  # 使用解包将返回值分配给多个变量
+print(x, y, z)  # 输出 10 20 30
+```
+
+### 3.语句与表达式 Statements and Expressions
+
+> An expression is a data value or an operation that evaluates to a value.
+
+对于表达式
+
+- 它本身是**值**
+- 它的**计算结果是值**
+
+> Statements, by contrast, do not evaluate to a value, and we can't print them. Usually they perform some action, though.
+
+对于语句
+
+- 它不是值
+- 它不能打印
+- 但它能**执行一些操作**
+
+```python
+# Python 只能 print 值和表达式，如果你能用 print() 输出它，那它就是表达式
+
+print((2 < 3) and (9 > 0)) # True
+```
+
+### 4.变量作用域 Variable Scope
+
+- 每个变量都有属于自己的作用范围
+- 超出作用范围后，变量不可见
+
+今天的课程中，骆老师重点讲了局部变量和全局变量的区别，并且通过可视化带大家理解函数调用过程
+
+例如在讲全局变量时：
+
+```python
+g = 100
+
+def f(x):
+    return x + g
+
+print(f(5)) # 105
+print(f(6)) # 106
+print(g)    # 100
+```
+
+![image-20231019214556007](https://s2.loli.net/2023/10/19/nUD4f3CWNOI1pRq.png)
+
+```python
+g = 100
+
+def f(x):
+    # 如果我们想要修改 g 的值，我们必须声明它是全局变量
+    # 否则 Python 会假设它是局部变量
+    global g
+    g += 1
+    return x + g
+
+print(f(5)) # 106
+print(f(6)) # 108
+print(g)    # 102
+```
+
+![image-20231019221821484](https://s2.loli.net/2023/10/19/pxY65GviHmUzqAl.png)
+
+### 5.函数的一些技巧/注意事项 Trick
+
+* 返回语句 Return Statements，一旦返回，函数**立即结束！**
+
+```python
+def isPositive(x):
+    print("Hello!")   # 会运行
+    return (x > 0)
+    print("Goodbye!") # 不会运行
+
+print(isPositive(5))  # 输出 “Hello!” 然后返回 True
+```
+
+* 没有返回语句的时候，函数会返回 `None`
+
+```python
+def f(x):
+    result = x + 42
+
+print(f(5)) # None
+```
+
+* Helper Functions
+
+```python
+def onesDigit(n):
+    return n%10
+
+def largerOnesDigit(x, y):
+    return max(onesDigit(x), onesDigit(y))
+
+print(largerOnesDigit(134, 672)) # 4
+print(largerOnesDigit(132, 674)) # 依然是 4
+```
+
+### 6.总结 Summary
+
+- 变量只是个标签，物理设备上有啥才是重点
+- 函数定义：`def`、header、body、缩进、`return`
+- 函数是有作用域的，类似双层玻璃，里面可以看见外面，外面不能看见里面
+- Helper Function 有时候会很有用
+- 补充资料：
+  - [递归&分治](https://oi-wiki.org/basic/divide-and-conquer/)
+  - [Teach Yourself Computer Science](https://teachyourselfcs.com/)
+
+### 7.作业 Homework
+
+必做题：
+
+- Square Root
+- Square
+- Odd number
+
+提高题：
+
+- Range
+- Circles Intersect
+
+这里对提高题进行解读
+
+#### - Range
+
+##### **题目描述**
+
+我们会输入两个数字`x1`和`x2`，你需要编写程序，求解其上界与下界并返回相应的值。
+
+**输入格式**
+
+输入两个`int`整型数，用逗号分隔。
+
+**输出格式**
+
+分别输出下界和上界，中间以空格隔开，具体见输出样例。
+
+**输入样例**
+
+```bash
+19,12
+```
+
+**输出样例**
+
+```bash
+12 19
+```
+
+##### **代码如下**
+
+```python
+import ast
+
+x1, x2 = ast.literal_eval(input())
+# 现在程序中有变量x1和x2
+
+# 在这行注释下面，编写代码，输出你的答案
+print(min(x1, x2), max(x1, x2))
+```
+
+#### - Circles Intersect
+
+##### **题目描述**
+
+我们会输入 6 个数字 `x1`，`y1`，`x2`，`y2`，`r1`，`r2` 它们代表两个圆，圆心分别为 `(x1, y1)` 和 `(x2, y2)` ，半径分别为 `r1` 和 `r2`。你需要编写程序，判断两个圆是否相交，若相交则返回 `True` ，否则返回 `False`。（相交指两个圆在一个或多个点接触或重叠）。
+
+**输入格式**
+
+六个数字，数字类型为整数或者浮点数，以逗号分隔。
+
+**输出格式**
+
+`True` 或者 `False`，判断两个圆是否相交。
+
+**输入样例**
+
+```bash
+0,0,2,3,0,2
+```
+
+**输出样例**
+
+```bash
+True
+```
+
+##### **代码如下**
+
+```python
+import ast
+
+x1, y1, r1, x2, y2, r2 = ast.literal_eval(input())
+# 现在程序中有六个变量，x1, y1, r1, x2, y2, r2
+
+# 在这行注释下面，编写代码，输出你的答案
+print(((x1 - x2) ** 2 + (y1 - y2) ** 2) ** 0.5 <= (r1 + r2))
+```
+
+今天的题目都较为简单，主要是让大家学会使用常用的内置函数解决一些问题。
+
+
+
+## - Chapter4
+
+> Chapter 4 条件 Conditionalss
 
 
 
