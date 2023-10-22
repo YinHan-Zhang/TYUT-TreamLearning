@@ -804,7 +804,8 @@ x1, y1, r1, x2, y2, r2 = ast.literal_eval(input())
 # 现在程序中有六个变量，x1, y1, r1, x2, y2, r2
 
 # 在这行注释下面，编写代码，输出你的答案
-print(((x1 - x2) ** 2 + (y1 - y2) ** 2) ** 0.5 <= (r1 + r2))
+distance = ((x1 - x2) ** 2 + (y1 - y2) ** 2) ** 0.5
+print((distance <= (r1 + r2)) and (distance >= abs(r1 - r2)))
 ```
 
 今天的题目都较为简单，主要是让大家学会使用常用的内置函数解决一些问题。
@@ -813,7 +814,383 @@ print(((x1 - x2) ** 2 + (y1 - y2) ** 2) ** 0.5 <= (r1 + r2))
 
 ## - Chapter4
 
-> Chapter 4 条件 Conditionalss
+> Chapter 4 条件 Conditionals
+
+### 1.if 语句 
+
+![img](https://s2.loli.net/2023/10/21/gtxylrDK5dBWseQ.jpg)
+
+<center>if语句流程</center>
+
+今天骆老师讲了很多种`abs()`的实现方法，通过实现绝对值函数带着大家理解逻辑判断语句。
+
+> Python 内置了一个函数叫 `abs()` 用于绝对值计算，所以我们将函数命名成 `abs1`、`abs2`……
+
+```python
+def abs1(n):
+    if n < 0:
+        n = -n
+    return n
+# 写在一行    
+def abs2(n):
+    if n < 0: n = -n 
+    return n
+# 多个返回语句
+def abs3(n):
+    if n < 0:
+        return -n
+    return n
+# 使用布尔表达式
+def abs4(n):
+    return (n < 0)*(-n) + (n>=0)*(n) # 不建议这样写
+```
+
+### 2.if-else 语句
+
+一个例子：
+
+```python
+def f(x):
+    print("A", end="")
+    if x == 0: 
+        print("B", end="")
+        print("C", end="")
+    else:
+        print("D", end="")
+        if x == 1:
+            print("E", end="")
+        else:
+            print("F", end="")
+    print("G")
+```
+
+同样的，骆老师为了让大家更直观的理解判断的流程，用可视化的方式让大家看到了代码是如何执行的。
+
+![image-20231022001214976](https://s2.loli.net/2023/10/22/KCBN91rtXpAwGu3.png)
+
+if-else实现方法：
+
+```python
+# if-else
+def abs5(n):
+    if n >= 0:
+        return n
+    else:
+        return -n
+# 符号标记
+def abs6(n):
+    if n >= 0:
+        sign = +1
+    else:
+        sign = -1
+    return sign * n
+```
+
+### 3.实践小任务
+
+两个都是很经典的题目
+
+任务一：实现一个函数，输入一元二次函数的各项系数，返回其解的个数。
+
+> $$
+> 提示：一元二次方程 ax^2+bx+c=0\ (a \neq 0) 的根与根的判别式 有如下关系：
+> $$
+>
+> $$
+> \Delta = b^2 - 4 ac
+> $$
+>
+> - 当 Δ>0时，方程有两个不相等的实数根；
+> - 当 Δ=0时，方程有两个相等的实数根；
+> - 当 Δ<0 时，方程无实数根。
+
+![image-20231022002833772](https://s2.loli.net/2023/10/22/u3ZoAnORtzChMlv.png)
+
+任务二：实现传说中的“学生分数登记管理系统”
+
+![image-20231022002944062](https://s2.loli.net/2023/10/22/OkZaw5doW3neQmK.png)
+
+### 4.if-else 推导式
+
+* 推导式的使用需要满足的条件：可以使得代码更简洁，更容易理解
+
+```python
+def abs7(n):
+    return n if (n >= 0) else -n
+
+print("abs7(5) =", abs7(5), "and abs7(-5) =", abs7(-5))
+```
+
+### 5.match-case 语句
+
+这里骆老师给了大家两个示例带大家理解match-case的使用场景，上边的学生分数登记管理系统就可以使用新特性解决
+
+![image-20231022003720834](https://s2.loli.net/2023/10/22/AeuO6hwaE5f3cVn.png)
+
+[菜鸟教程示例](https://www.runoob.com/python3/python3-conditional-statements.html#:~:text=2 和 3-,match...case,-Python 3.10 增加)
+
+[HTTP 响应状态码](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status)
+
+**一个小的随堂练习**
+
+**背景：**小 ϵ 是一名大四学生，他的学校毕业要求是通过大学英语六级考试，你能写个程序看看他能不能毕业嘛？
+
+**输入格式**：1-2 个整数，以空格分隔，第一个数字代表 CET 4 成绩，第二个数字代表 CET 6 成绩，如果四级未通过则没有六级成绩。
+
+**输出格式：**1 个字符串，`Yes` 代表能够毕业，`No` 代表不能毕业。
+
+**输入示例：**
+
+> 500 430
+
+**输出示例：**
+
+> Yes
+
+**代码如下：**
+
+```python
+# if-else方法
+def isGraduate(cet4, cet6):
+    if cet4 >= 425 and cet6 >= 425:
+        return "Yes"
+    else:
+        return "No"
+
+cet4, cet6 = input().split()
+cet4 = float(cet4)
+cet6 = float(cet6)
+
+isGraduate(cet4, cet6)
+```
+
+### 6.清晰的代码风格 Clarity and style
+
+* 一个好的代码风格对于程序员来说非常重要，要让代码易于理解，简洁明确
+
+例如：
+
+```python
+# 1.否定条件（带有else部分）
+
+# 可能不清晰的:
+b = True
+if not b:
+    print('no')
+else:
+    print('yes')
+    
+# 清晰的:
+b = True
+if b:
+    print('yes')
+else:
+    print('no')
+    
+# 2.空白的if部分
+
+# 不清晰的:
+b = False
+if b:
+    pass
+else:
+    print('no')
+    
+# 清晰的:
+b = False
+if not b:
+    print('no')
+    
+# 3.用嵌套的 if 而不是 and 来判断
+
+# 混乱的:
+b1 = True
+b2 = True
+if b1:
+    if b2:
+        print('both!')
+# 清晰的:
+b1 = True
+b2 = True
+if b1 and b2:
+    print('both!')
+
+# 4.使用 if 而不是 else 来控制
+
+# 又混乱又有产生 bug 的风险:
+x = 10
+if x < 5:
+    print('small')
+if (x >= 5) and (x < 10):
+    print('medium')
+if (x >= 10) and (x < 15):
+    print('large')
+if x >= 15:
+    print('extra large')
+    
+# 更好的做法:
+x = 10
+if x < 5:
+    print('small')
+elif x < 10:
+    print('medium')
+elif x < 15:
+    print('large')
+else:
+    print('extra large')
+```
+
+### 7.总结 Summary
+
+- Conditionals Make Decisions.
+- if-else 结构构成了 Python 分支控制，if 还能嵌套使用。
+- 合理的编写风格会让代码更易读，还能尽可能避免引入 bug。
+
+### 8.作业 Homework
+
+必做题：
+
+- Output Letter Grade by Score
+- getInRange
+- Is Point Inside Square
+
+提高题：
+
+- Check Leap Year
+- Days in Month
+
+这里对提高题进行解读
+
+#### - Check Leap Year
+
+**题目描述**
+
+输入一个年份，判断这一年是否是闰年，如果是输出 `True`，否则输出 `False`。
+
+**输入格式**
+
+输入一个正整数 `x`，表示年份。
+
+**输出格式**
+
+输出一行。如果输入的年份是闰年则输出 `True`，否则输出 `False`。
+
+**样例输入-1**
+
+```bash
+1944
+```
+
+**样例输出-1**
+
+```bash
+True
+```
+
+**样例输入-2**
+
+```bash
+1900
+```
+
+**样例输出-2**
+
+```bash
+False
+```
+
+**解题思路**
+
+闰年：
+
+- **四年一闰百年不闰**：即如果year能够被4整除，但是不能被100整除，则year是闰年。
+- **每四百年再一闰**：如果year能够被400整除，则year是闰年。
+
+代码如下：
+
+```python
+x = int(input())
+# 现在程序中有一个变量x
+
+# 在这行注释下面，编写代码，输出你的答案
 
 
+def is_leap_year(year):
+    if year % 4 == 0 and year % 100 != 0:
+        return True
+    elif year % 400 == 0:
+        return True
+    else:
+        return False
+
+
+print(is_leap_year(x))
+```
+
+#### - Days in Month
+
+**题目描述**
+
+输入年份和月份，输出这一年的这一月有多少天。需要考虑闰年。
+
+**输入格式**
+
+输入两个正整数，分别表示年份 *y* 和月数 *m*，以`,`隔开。
+
+**输出格式**
+
+输出一行一个正整数，表示这个月有多少天。
+
+**样例输入-1**
+
+```bash
+1926,8
+```
+
+**样例输出-1**
+
+```bash
+31
+```
+
+**样例输入-2**
+
+```bash
+2000,2
+```
+
+**样例输出-2**
+
+```bash
+29
+```
+
+**解题思路**
+
+* 先考虑特殊情况，2月在闰年有29天，平年28天，所以先判断是不是闰年
+* 其次考虑其他月份，1, 3, 5, 7, 8, 10, 12月有31天，其余月份30天
+
+**代码如下**
+
+```python
+import ast
+
+y, m = ast.literal_eval(input())
+# 现在程序中有两个变量y, m
+
+# 在这行注释下面，编写代码，输出你的答案
+
+# 根据年份和月份判断天数
+if m == 2:
+    if y % 4 == 0 and y % 100 != 0 or y % 400 == 0:
+        days_in_month = 29
+    else:
+        days_in_month = 28
+elif m in [1, 3, 5, 7, 8, 10, 12]:
+    days_in_month = 31
+else:
+    days_in_month = 30
+
+print(days_in_month)
+```
 
