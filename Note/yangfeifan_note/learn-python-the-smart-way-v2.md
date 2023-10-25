@@ -1194,3 +1194,332 @@ else:
 print(days_in_month)
 ```
 
+## - Chapter5
+
+> Chapter 5 循环 Loop
+
+### 1.for 循环
+
+**for 循环的特点**：基于提供的范围，**重复执行特定次数**的操作
+
+for循环：for循环用于遍历一个可迭代对象（如列表、元组、字符串等），按顺序执行其中的语句块。语法如下：
+
+```python
+for 变量 in 可迭代对象:
+    执行的语句块
+```
+
+例子：
+
+```python
+fruits = ["apple", "banana", "cherry"]
+for fruit in fruits:
+    print(fruit)
+```
+
+输出：
+
+```
+apple
+banana
+cherry
+```
+
+![image-20231024182520429](https://s2.loli.net/2023/10/24/w8Jv6QfcFVLzbrS.png)
+
+这里扩展了range函数，并且强调了左闭右开的特性
+
+### 2.for 循环嵌套
+
+这里通过for循环嵌套输出二维数组
+
+![image-20231024213629252](https://s2.loli.net/2023/10/24/qWEHesiZvKNXV3l.png)
+
+### 3.while 循环
+
+while循环：while循环根据一个条件表达式的真假来循环执行一段代码。只要条件为真，循环就会一直进行。语法如下：
+
+```
+while 条件表达式:
+    执行的语句块
+```
+
+例子：
+
+```python
+count = 1
+while count <= 5:
+    print(count)
+    count += 1
+```
+
+输出：
+
+```
+1
+2
+3
+4
+5
+```
+
+* 当你**不知道循环什么时候停下来**的时候，可以试试 **`while`**
+
+例如：找出一个数最左边的那一位的数值（`12345` 的 `1` ）
+
+```python
+# 我不知道它什么时候停下来
+
+def leftmostDigit(n):
+    n = abs(n)
+    while n >= 10:
+        n = n//10
+    return n 
+    
+leftmostDigit(46535248) # 4
+```
+
+### 4.break 与 continue 语句
+
+```python
+for n in range(200):
+    if n % 3 == 0:
+        continue # 跳过这次循环
+    elif n == 8:
+        break # 跳出当前整个循环
+    else:
+        pass # 啥也不做，占位符（不会被运行）
+    print(n, end=" ")
+
+# 1 2 4 5 7 
+```
+
+### 5.假·死循环
+
+与环境交互后，在特定条件下终止的循环
+
+```python
+# 不需要看懂这些代码，关注演示的过程
+
+def readUntilDone():
+    linesEntered = 0
+    while True:
+        response = input("输入一个字符串（输入 done 则退出）: ")
+        if response == "done":
+            break
+        print("你输入了: ", response)
+        linesEntered += 1
+    print("Bye!")
+    return linesEntered
+    
+linesEntered = readUntilDone()
+print("你输入了", linesEntered, "行 (不包括 'done').")
+```
+
+![image-20231024232227096](https://s2.loli.net/2023/10/24/jZYTM3KsRi7PnOg.png)
+
+### 6.循环的效率
+
+关于循环的效率，骆老师通过判断质数的不同方法带大家体验代码的执行效率
+
+**isPrime 判断一个数是不是质数**
+
+```python
+# 不是最快的写法，但最容易理解
+
+def isPrime(n):
+    if n < 2:
+        return False
+    for factor in range(2,n):
+        if n % factor == 0:
+            return False
+    return True
+
+# 快了一点
+
+def fasterIsPrime(n):
+    if n < 2:
+        return False
+    if n == 2:
+        return True
+    if n % 2 == 0:
+        return False
+    maxFactor = round(n**0.5)
+    for factor in range(3, maxFactor+1, 2):
+        if n % factor == 0:
+            return False
+    return True
+
+# 验证他它俩结果是一样的
+# assert是Python中的断言语句，用于检查程序的某个条件是否为真。
+
+for n in range(100):
+    assert(isPrime(n) == fasterIsPrime(n))
+print("两种解法的结果一致")
+```
+
+![image-20231025000622974](https://s2.loli.net/2023/10/25/MANt18G7fxk645d.png)
+
+很明显，代码效率有了很大提升
+
+### 7.总结 Summary
+
+- For 循环用于指定范围的重复操作。
+- `range()` 可以生成一个数字范围。
+- 在不知道循环什么时间停止的时候，应该试试 While 循环。
+- 循环同样也是可以嵌套的。
+- 巧妙地使用 `break` 和 `continue` 语句。
+- 合理的剪枝，缩小搜索范围/循环范围，可以大幅提高程序运行效率。
+
+### 8.作业 Homework
+
+必做题：
+
+- N*M Matrix
+- ReverseNumber
+- hasConsecutiveDigits
+
+提高题：
+
+- nthPalindromicPrime
+- carrylessAdd
+
+这里对提高题进行解读
+
+#### - nthPalindromicPrime
+
+**题目描述**  
+
+**质数**（Prime number），又称**素数**，指在大于1的自然数中，除了1和该数自身外，无法被其他自然数整除的数（也可定义为只有1与该数本身两个因数的数）。**回文数**或**迴文数**是指一个像14641这样“对称”的数。同时满足**质数**和**回文数**的条件的数被称为回文素数。在本题中我们会输入一个整型数`n`， 你需要编写程序，来返回第n个回文素数的值。前十个回文素数如下：2, 3, 5, 7, 11, 101, 131, 151, 181, 191。
+
+**输入格式**
+
+一个整型数`n`。
+
+**输出格式**
+
+一个整型数。
+
+**输入样例**
+
+```none
+0
+```
+
+**输出样例**
+
+```none
+2
+```
+
+**提示说明**
+
+- 本题中 `n`的范围为：[0 , 21)
+- 供参考的**回文素数表**如下：2, 3, 5, 7, 11, 101, 131, 151, 181, 191, 313, 353, 373, 383, 727, 757, 787, 797, 919, 929, 10301, 10501, 10601, 11311；
+- 本题可以先使用`is_prime(num)`函数来判断一个数是否为质数，然后使用`is_palindrome(num)`函数比较、判断是否为回文数。
+
+**代码如下**
+
+```python
+import ast
+
+n = ast.literal_eval(input())
+# 现在程序中有一个变量n
+# 在这行注释下面，编写代码，输出你的答案
+
+
+def is_prime(num):
+    """判断一个数是否是质数"""
+    if num < 2:
+        return False
+    for i in range(2, int(num**0.5) + 1):
+        if num % i == 0:
+            return False
+    return True
+
+
+def is_palindrome(num):
+    """判断一个数是否是回文数"""
+    reversed_num = 0
+    original_num = num
+    while num > 0:
+        curr_digit = num % 10
+        reversed_num = reversed_num * 10 + curr_digit
+        num = num // 10
+    return reversed_num == original_num
+
+
+def get_nth_palindrome_prime(n):
+    """获取第n个回文素数的值"""
+    count = 0
+    num = 2
+
+    # 不断递增num，直到找到第n个回文素数为止
+    while count < n:
+        # 判断num是否是回文素数
+        if is_prime(num) and is_palindrome(num):
+            count += 1
+            if count == n:
+                return num
+        num += 1
+
+
+print(get_nth_palindrome_prime(n+1))
+```
+
+#### - carrylessAdd
+
+**题目描述**
+
+众所周知，我们常见的加法规则是类似与 8 + 7 = 15这种，但是现在我们需要设计一种全新的加法运算规则：忽略进位的加法计算。例如输入18和27，答案会是35，而非正常的45。输入两个正整数`x1`和`x2`，返回此方法下计算后的结果。
+
+**输入格式**
+
+两个整型数`x1`和`x2`，用逗号隔开。
+
+**输出格式**
+
+一个整型数。
+
+**输入样例**
+
+```none
+785,376
+```
+
+**输出样例**
+
+```none
+51
+```
+
+**解题思路**
+
+当我们需要对两个整数进行无进位相加时，可以分别取出它们的个位进行相加，然后将相加结果乘以 10 的相应次方累加起来，以得到最终的结果。
+
+**代码如下**
+
+```python
+import ast
+
+x1, x2 = ast.literal_eval(input())
+# 现在程序中有两个变量x1, x2
+# 在这行注释下面，编写代码，输出你的答案
+
+def carrylessAdd(x1, x2):
+    # 设定一个初始值 result 和一个乘数 multiplier
+    result = 0
+    multiplier = 1
+    
+    while x1 > 0 or x2 > 0:
+        sum_bits = (x1 % 10 + x2 % 10) % 10
+        result += sum_bits * multiplier
+        multiplier *= 10
+        x1 //= 10
+        x2 //= 10
+        
+    return result
+
+print(carrylessAdd(x1, x2))
+```
+
