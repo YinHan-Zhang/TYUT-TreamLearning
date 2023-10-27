@@ -1523,3 +1523,579 @@ def carrylessAdd(x1, x2):
 print(carrylessAdd(x1, x2))
 ```
 
+## - Chapter6
+
+> Chapter 6 字符串 Strings
+
+### 1.字符串文字
+
+#### 四种引号
+
+在这里骆老师介绍了不同引号的作用。 
+
+引号的作用就是将文字包裹起来，告诉 Python "这是个字符串！"
+
+单引号 `'` 和双引号 `"` 是最常见的两种字符串引号
+
+```python
+print('单引号')    # 单引号
+print("双引号")	# 双引号
+```
+
+三个引号的情况不太常见，但是它在一些场合有特定的作用（如函数文档 doc-strings）
+
+```python
+print('''三个单引号''') # 三个单引号
+print("""三个双引号""") # 三个双引号
+```
+
+**我们为什么需要两种不同的引号？**
+
+```python
+# 为了写出这样的句子
+print("聪明办法学 Python 第二版的课程简称是 'P2S'")
+# 聪明办法学 Python 第二版的课程简称是 'P2S'
+```
+
+如果我们偏要只用一种引号呢？
+
+```python
+# 这会导致语法错误，Python 无法正确判断一个字符串的终止位置
+print("聪明办法学 Python 第二版的课程简称是 "P2S"")
+  Cell In [4], line 2
+    print("聪明办法学 Python 第二版的课程简称是 "P2S"")
+                                   ^
+SyntaxError: invalid syntax
+```
+
+#### 字符串中的换行符号
+
+前面有反斜杠 `\` 的字符，叫做**转义序列**，反斜杠 `\` 叫做转义字符
+
+ `\n` 代表**换行**，尽管它看起来像两个字符，但是 Python 依然把它视为一个特殊的字符
+
+![image-20231027162324021](https://s2.loli.net/2023/10/27/6Oqe7h4GFb3WAmd.png)
+
+ `\n` 还可以用来排除后面的换行。
+
+![image-20231027162548606](https://s2.loli.net/2023/10/27/9spuLQTqkfGvAmE.png)
+
+**其他的转义序列**
+
+```python
+print("双引号：\"")  # 双引号："
+
+print("反斜线：\\")  # 反斜线：\
+
+print("换\n行")  
+换
+行
+
+print("这个是\t制\t表\t符\n也叫\t跳\t格\t键")
+这个是	制	表	符
+也叫	跳	格	键
+```
+
+**转义序列只作为一个字符存在**
+
+```python
+s = "D\\a\"t\ta"
+print("s =", s)
+print("\ns 的长度为：", len(s))
+```
+
+```
+s = D\a"t	a
+
+s 的长度为： 7
+```
+
+#### repr() vs. print()
+
+`repr()` 和 `print()` 都是 Python 的内置函数，但它们的作用略有差别。
+
+`repr()` 的作用是返回一个对象的字符串表示形式，它通常被用于开发和调试，以及在可能需要重新创建该对象时将对象的表示形式输出到控制台或日志文件中。
+
+`print()` 的作用是将对象输出到控制台或其他输出流中，它通常被用于向用户显示输出。它会将对象转换成一个字符串并在控制台输出，但该字符串会使用特定的分隔符和结尾标志。例如：
+
+```python
+s1 = "Data\tWhale"
+s2 = "Data        Whale"
+
+print("s1:", s1) # s1: Data        Whale
+print("s2:", s2) # s2: Data        Whale
+
+s1 == s2	# 输出False
+```
+
+为什么不一样呢？我们输出一下试试
+
+```
+print(repr(s1))
+print(repr(s2))
+```
+
+![image-20231027163652400](../../../../AppData/Roaming/Typora/typora-user-images/image-20231027163652400.png)
+
+**在这里引出了一个 python2 安全性的问题**
+
+如果遇到恶意代码时，我们可以使用repr来输出隐藏的代码
+
+```python
+hack_text = "密码应当大于 8 个字符，小于 16 个字符，包含大写字母、小写字母、数字和特殊符号\t\t\t\t\t\t\t\t\t\t\t\t\t"
+```
+
+![image-20231027164222126](https://s2.loli.net/2023/10/27/Zqbw9unWyaPDfQi.png)
+
+多行字符串作为注释
+
+```python
+"""
+Python 本身是没有多行注释的，
+但是你可以用多行字符串实现同样的操作，
+还记得我们之前学过的“表达式“吗？
+它的原理就是 Python 会运行它，
+但是马上扔掉！（垃圾回收机制）
+"""
+print("Amazing!")
+```
+
+### 2.一些字符串常量
+
+![image-20231027164939608](https://s2.loli.net/2023/10/27/xFAcMNLDB2ilYT6.png)
+
+### 3.一些字符串的运算
+
+#### 基本运算
+
+* 字符串的加减
+
+```python
+print("abc" + "def")
+print("abc" * 3)
+
+abcdef
+abcabcabc
+```
+
+```bash
+print("abc" + 3)
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+Cell In [31], line 1
+----> 1 print("abc" + 3)
+
+TypeError: can only concatenate str (not "int") to str
+```
+
+* `in` 运算（超级好用！）
+
+```python
+print("ring" in "strings") # True
+print("wow" in "amazing!") # False
+print("Yes" in "yes!") # False
+print("" in "No way!") # True
+print("聪明" in "聪明办法学 Python") # True
+
+# 输出
+True
+False
+False
+True
+True
+```
+
+#### 字符串索引和切片
+
+* 单个字符索引  索引可以让我们在特定位置找到一个字符
+
+```python
+s = "Datawhale"
+print(s)
+print(s[0])
+print(s[1])
+print(s[2])
+print(s[3])
+
+# 输出
+Datawhale
+D
+a
+t
+a
+```
+
+```python
+len(s)  # 9
+print(s[len(s)-1])  # e
+```
+
+* 用切片来获取字符串的一部分
+
+```python
+print(s[0:4])
+print(s[4:9])
+
+# 输出
+Data
+whale
+```
+
+* 切片的默认参数
+
+```python
+print(s[:4])
+print(s[4:])
+print(s[:])
+
+# 输出
+Data
+whale
+Datawhale
+```
+
+* 切片的第三个参数 `step`
+
+```python
+print(s[:9:3])
+print(s[1:4:2])
+
+# 输出
+Daa
+aa
+```
+
+* 翻转字符串
+
+```python
+# 实在是太优雅辣
+def reverseString(s):
+    return s[::-1]
+
+print(reverseString(s))
+
+# 输出
+elahwataD
+```
+
+### 4.字符串的循环
+
+用索引的 for 循环
+
+```python
+for i in range(len(s)):
+    print(i, s[i])
+```
+
+其实也可以不用索引（超级好用的 `in`）
+
+```python
+for c in s:
+    print(c)
+```
+
+![image-20231027215650607](https://s2.loli.net/2023/10/27/qaL2TYbcFPRZiw4.png)
+
+也可以使用 `enumerate()` 获得元素的序号
+
+```python
+for idx, c in enumerate(s):
+    print(idx, c)
+```
+
+`zip(a, b)` 可以在一次循环中，分别从 `a` 和 `b` 里同时取出一个元素
+
+```python
+for a, b in zip(s, reverseString(s)):
+    print(a, b)
+```
+
+![image-20231027221350347](https://s2.loli.net/2023/10/27/XW1o9vCxUIOekdH.png)
+
+**例子：回文判断**
+
+如果一个句子正着读、反着读都是一样的，那它就叫做“回文”。在这里骆老师用四种不同的方法实现了回文判断。
+
+```python
+def isPalindrome1(s):
+    return (s == reverseString(s))
+```
+
+```python
+def isPalindrome2(s):
+    for i in range(len(s)):
+        if (s[i] != s[len(s)-1-i]):
+            return False
+    return True
+```
+
+```python
+def isPalindrome3(s):
+    for i in range(len(s)):
+        if (s[i] != s[-1-i]):
+            return False
+    return True
+```
+
+```python
+def isPalindrome4(s):
+    while (len(s) > 1):
+        if (s[0] != s[-1]):
+            return False
+        s = s[1:-1]
+    return True
+```
+
+### 5.一些跟字符串相关的内置函数
+
+* `str()` 和 `len()`
+
+```python
+name = input("输入你的名字: ")
+print("Hi, " + name + ", 你的名字有 " + str(len(name)) + " 个字！")
+```
+
+* `chr()` 和 `ord()`
+
+```python
+print(ord("A"))  # 65
+print(chr(65))   # A
+print(chr(ord("A") + ord(" ")))  # a
+```
+
+* `eval()`
+
+`eval()` 是 Python 的一个内置函数，它用于将字符串作为 Python 表达式来执行。
+
+```python
+def 电脑当场爆炸():
+    from rich.progress import (
+        Progress, 
+        TextColumn, 
+        BarColumn, 
+        TimeRemainingColumn)
+    import time
+    from rich.markdown import Markdown
+    from rich import print as rprint
+    from rich.panel import Panel
+
+
+    with Progress(TextColumn("[progress.description]{task.description}"),
+                BarColumn(),
+                TimeRemainingColumn()) as progress:
+        epoch_tqdm = progress.add_task(description="爆炸倒计时！", total=100)
+        for ep in range(100):
+            time.sleep(0.1)
+            progress.advance(epoch_tqdm, advance=1)
+
+    rprint(Panel.fit("[red]Boom! R.I.P"))
+    
+s = "电脑当场爆炸()"
+eval(s) # 如果这是一串让电脑爆炸的恶意代码，那会发生什么
+```
+
+![image-20231027233008815](https://s2.loli.net/2023/10/27/1jygMXxckLSU4o8.png)
+
+为了避免不安全的情况出现，我们推荐使用以下方法
+
+![image-20231027233052656](https://s2.loli.net/2023/10/27/OYt4IQCgHkeWFwz.png)
+
+### 6.一些字符串方法
+
+```python
+def p(test):
+    print("True     " if test else "False    ", end="")
+def printRow(s):
+    print(" " + s + "  ", end="")
+    p(s.isalnum())
+    p(s.isalpha())
+    p(s.isdigit())
+    p(s.islower())
+    p(s.isspace())
+    p(s.isupper())
+    print()
+def printTable():
+    print("  s   isalnum  isalpha  isdigit  islower  isspace  isupper")
+    for s in "ABCD,ABcd,abcd,ab12,1234,    ,AB?!".split(","):
+        printRow(s)
+printTable()
+```
+
+![image-20231027233405648](https://s2.loli.net/2023/10/27/CQoFhumgDTWkcSG.png)
+
+其他的一些方法：
+
+![image-20231027233638969](https://s2.loli.net/2023/10/27/vRSW6e7lX35Tcwq.png)
+
+![image-20231027233654123](https://s2.loli.net/2023/10/27/vjQoD6beZtF2R3Y.png)
+
+### 7.格式化字符串
+
+* 用 `f-string` 格式化字符串
+
+```
+x = 42
+y = 99
+
+print(f'你知道 {x} + {y} 是 {x+y} 吗？')
+```
+
+Python 还有其他方法去格式化字符串：
+
+- `%` 操作
+- `format()` 方法
+
+参考资料：
+
+- [Class Notes: String Formatting - CMU 15-112](http://www.cs.cmu.edu/~112-f22/notes/notes-string-formatting.html)
+- [Python 字符串 - 菜鸟教程](https://www.runoob.com/python3/python3-string.html#:~:text=\n \n-,Python 字符串格式化,-Python 支持格式化)
+- [Python format 格式化函数 - 菜鸟教程](https://www.runoob.com/python/att-string-format.html)
+
+### 8.注意事项
+
+* 字符串是不可变的
+
+![image-20231027234004767](https://s2.loli.net/2023/10/27/mJ1EirjXKf8Nbyc.png)
+
+* 字符串是不可变的，所以它的别名也是不可变的
+
+![image-20231027234020812](https://s2.loli.net/2023/10/27/HS8Q1hnpFebL2tB.png)
+
+### 9.基础文件操作
+
+**`Open()` 函数**
+
+Python `open()` 函数用于打开一个文件，并返回文件对象，在对文件进行处理过程都需要使用到这个函数。
+
+`open(file, mode)` 函数主要有 `file` 和 `mode` 两个参数，其中 `file` 为需要读写文件的路径。`mode` 为读取文件时的模式，常用的模式有以下几个：
+
+- `r`：以字符串的形式读取文件。
+- `rb`：以二进制的形式读取文件。
+- `w`：写入文件。
+- `a`：追加写入文件。
+
+不同模式下返回的文件对象功能也会不同。![image-20231027234148648](https://s2.loli.net/2023/10/27/C47JEVjHhu6xcnG.png)
+
+**文件对象**
+
+`open` 函数会返回一个 文件对象。在进行文件操作前，我们首先需要了解文件对象提供了哪些常用的方法
+
+- `close( )`: 关闭文件
+- 在r与rb模式下：
+  - `read()`: 读取整个文件
+  - `readline()`: 读取文件的一行
+  - `readlines()`: 读取文件的所有行
+- 在w与a模式下：
+  - `write()`:写入文本内容或字节到文件中
+  - `writelines()`:写入文本所有行
+
+**需要注意的是，在使用文件操作完成后，需要调用 `close()` 方法来关闭文件，以释放系统资源**  
+
+这时候，**with()函数**就显得非常好用了
+
+> 我不想写 close() 啦！
+
+祭出我们经典的python之禅
+
+![image-20231028004155551](https://s2.loli.net/2023/10/28/RH61GzgQN3cn7TX.png)
+
+这时候我们可以用**with函数**来操作文件了
+
+![image-20231028004316759](https://s2.loli.net/2023/10/28/6ZSqDais5f3ePV2.png)
+
+### 10.总结 
+
+- 单引号与双引号要适时出现，多行文本用三引号。
+- 字符串中可以包含转义序列。
+- `repr()` 能够显示出更多的信息。
+- 字符串本身包含许多内置方法，`in` 是一个特别好用的玩意。
+- 字符串是不可变的常量。
+- 文件操作推荐使用 `with open("xxx") as yyy`，这样就不用写 `f.close()` 啦。
+
+### 11.作业
+
+必做题：
+
+- Find You
+- isPalindrome
+- New String
+
+提高题：
+
+- Upper and Lower
+- Rotate sentence please
+
+#### - Rotate sentence please
+
+**题目描述**
+
+输入一串句子(不含标点符号)，单词与单词之间以空格隔开，要求编写程序，将单词顺序进行翻转，但不翻转每个单词的内容。
+
+**输入格式**
+
+一串非空字符串，包含数个单词，中间以空格隔开，不含标点符号。
+
+**输出格式**
+
+翻转后的句子。
+
+**输入样例**
+
+```bash
+This works but is confusing
+```
+
+**输出样例**
+
+```bash
+confusing is but works This
+```
+
+**解题思路**
+
+要将单词顺序进行翻转，但不翻转每个单词的内容，我们可以联想到用之前的`reverse()`方法，但是不同的是，这次需要保留单词的含义，从空格处分开
+
+**代码如下**
+
+```python
+str1 = input()
+# 现在程序中有一个变量，名为str1
+
+# 在这行注释下面，编写代码，输出你的答案
+
+words = str1.split(" ")
+words.reverse()
+result = " ".join(words)
+
+print(result)
+```
+
+我们这里可以联想到后进先出的栈（stack）来完成题目，使用栈的方法通常会比使用列表的 `reverse()` 方法更高效。原因是使用列表的 `reverse()` 方法需要先将整个列表反转，然后再使用 `join()` 方法进行连接，而这涉及到更多的内存操作。使用栈的方法只需要将单词逐个入栈，然后再按照出栈顺序进行连接。这个过程不需要额外的内存操作和列表反转。因此，从效率上来说，使用栈的方法更高效。
+
+```python
+str1 = input()
+# 现在程序中有一个变量，名为str1
+
+# 在这行注释下面，编写代码，输出你的答案
+
+words = str1.split()
+stack = []
+
+for w in words:
+    stack.append(w)
+
+result = ""
+while stack:
+    result += stack.pop() + " "
+
+print(result.strip())
+```
+
+------
+
+到此为止，**《聪明办法学 Python 第二版》基础部分的全部学习内容**就算学完啦，期待Datawhale聪明办法学 Python 团队对进阶版的更新！
+
+## - Chapter7
+
+> todo...
+
