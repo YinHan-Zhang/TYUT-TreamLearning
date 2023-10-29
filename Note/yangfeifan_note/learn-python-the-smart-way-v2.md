@@ -2095,6 +2095,299 @@ print(result.strip())
 
 到此为止，**《聪明办法学 Python 第二版》基础部分的全部学习内容**就算学完啦，期待Datawhale聪明办法学 Python 团队对进阶版的更新！
 
+## - 结课竞赛
+
+### A. 成绩
+
+**题目描述**
+
+小鲸鱼最近学习了 Datawhale 的聪明办法学 Python 线下课程，这门课程的总成绩计算方法是：
+
+总成绩 = 作业成绩 ×20%+×20%+ 小测成绩 ×30%+×30%+ 期末考试成绩 ×50%×50%
+
+小鲸鱼想知道，这门课程自己最终能得到多少分。
+
+**输入格式**
+
+三个非负整数 A*,*B*,*C，分别表示小鲸鱼的作业成绩、小测成绩和期末考试成绩。相邻两个数之间用一个空格隔开，三项成绩满分都是100 分。
+
+**输出格式**
+
+一个整数，即小鲸鱼这门课程的总成绩，满分也是100分。
+
+**输入数据 1**
+
+```input1
+100 100 80
+```
+
+**输出数据 1**
+
+```output1
+90
+```
+
+**输入数据 2**
+
+```input2
+60 90 80
+```
+
+**输出数据 2**
+
+```output2
+79
+```
+
+**代码如下**：
+
+```python
+A, B, C = map(int, input().split(" "))
+
+total_grade = int(A * 0.2 + B * 0.3 + C * 0.5)
+print(total_grade)
+```
+
+------
+
+### B. 小鲸鱼的游泳时间
+
+**题目描述**
+
+亚运会开始了，小鲸鱼在拼命练习游泳准备参加游泳比赛，可怜的小鲸鱼并不知道鱼类是不能参加人类的奥运会的。
+
+这一天，小鲸鱼给自己的游泳时间做了精确的计时（本题中的计时都按 24 小时制计算），它发现自己从a时b分一直游泳到当天的 c时 d分，请你帮小鲸鱼计算一下，它这天一共游了多少时间呢？
+
+小鲸鱼游的好辛苦呀，你可不要算错了哦。
+
+**输入格式**
+
+一行内输入四个整数，以空格隔开，分别表示题目中的 a*,*b*,*c*,*d。
+
+**输出格式**
+
+一行内输出两个整数*e* 和 *f*，用空格间隔，依次表示小鲸鱼这天一共游了多少小时多少分钟。其中表示分钟的整数 *f* 应该小于 6060。
+
+对于全部测试数据0≤*a*,*c*≤24，0≤*b*,*d*≤60，且结束时间一定晚于开始时间
+
+**输入数据 1**
+
+```input1
+12 50 19 10
+```
+
+**输出数据 1**
+
+```output1
+6 20
+```
+
+**代码如下**：
+
+```python
+a, b, c, d = map(int, input().split(" "))
+
+total_minutes_start = a * 60 + b
+total_minutes_end = c * 60 + d
+
+swim_time = total_minutes_end - total_minutes_start
+
+e = swim_time // 60
+f = swim_time % 60
+
+print(e, f)
+```
+
+------
+
+### C. 不高兴的小鲸鱼
+
+**题目描述**
+
+小鲸鱼上初中了。鲸鱼妈妈认为小鲸鱼应该更加用功学习，所以小鲸鱼除了上学之外，还要参加鲸鱼妈妈为它报名的各科复习班。另外每周鲸鱼妈妈还会送它去学习朗诵、舞蹈和钢琴。但是小鲸鱼如果一天上课超过八个小时就会不高兴，而且上得越久就会越不高兴。假设小鲸鱼不会因为其它事不高兴，并且它的不高兴不会持续到第二天。请你帮忙检查一下小鲸鱼下周的日程安排，看看下周它会不会不高兴；如果会的话，哪天最不高兴。
+
+**输入格式**
+
+输入包括 7行数据，分别表示周一到周日的日程安排。每行包括两个小于10 的非负整数，用空格隔开，分别表示小鲸鱼在学校上课的时间和鲸鱼妈妈安排它上课的时间。
+
+**输出格式**
+
+一个数字。如果不会不高兴则输出 0，如果会则输出最不高兴的是周几（用1,2,3,4,5,6,7 分别表示周一，周二，周三，周四，周五，周六，周日）。如果有两天或两天以上不高兴的程度相当，则输出时间最靠前的一天。
+
+**输入数据 1**
+
+```input1
+5 3
+6 2
+7 2
+5 3
+5 4
+0 4
+0 6
+```
+
+**输出数据 1**
+
+```output1
+3
+```
+
+**代码如下**：
+
+```python
+schedules = []
+for i in range(7):
+    school_time, other_time = map(int, input().split())
+    schedules.append((school_time, other_time))
+
+max_unhappy_score = 0
+most_unhappy_day = 0
+
+for index, (school_time, other_time) in enumerate(schedules):
+    total_time = school_time + other_time
+    if total_time > 8 and total_time > max_unhappy_score:
+        most_unhappy_day = index + 1
+        max_unhappy_score = total_time
+
+print(most_unhappy_day)
+```
+
+------
+
+### D. 小鲸鱼的 Lucky Word
+
+**题目描述**
+
+小鲸鱼的词汇量很小，所以每次做英语选择题的时候都很头疼。但是它找到了一种方法，经试验证明，用这种方法去选择选项的时候选对的几率非常大！
+
+这种方法的具体描述如下：假设maxn 是单词中出现次数最多的字母的出现次数，minn 是单词中出现次数最少的字母的出现次数，如果 maxn−minn 是一个质数，那么小鲸鱼就认为这是个 Lucky Word，这样的单词很可能就是正确的答案。
+
+**输入格式**
+
+一个单词，其中只可能出现小写字母，并且长度小于 100
+
+**输出格式**
+
+共两行，第一行是一个字符串，假设输入的单词被验证是 `Lucky Word`，那么输出字符串 `Lucky Word`，否则输出 `No Answer`；
+
+第二行是一个整数，如果输入单词被验证是 `Lucky Word`，输出 maxn−minn 的值，否则输出 00。
+
+**输入数据 1**
+
+```input1
+error
+```
+
+**输出数据 1**
+
+```output1
+Lucky Word
+2
+```
+
+**输入数据 2**
+
+```input2
+olympic
+```
+
+**输出数据 2**
+
+```output2
+No Answer
+0
+```
+
+**代码如下**：
+
+```python
+import math
+
+word = input()
+char_cnt = {}
+
+for char in word:
+    char_cnt[char] = char_cnt.get(char, 0) + 1
+
+maxn = max(char_cnt.values())
+minn = min(char_cnt.values())
+diff = maxn - minn
+
+
+def is_prime(num):
+    if num < 2:
+        return False
+    for i in range(2, int(math.sqrt(num) + 1)):
+        if num % i == 0:
+            return False
+    return True
+
+
+if is_prime(diff):
+    print("Lucky Word")
+    print(diff)
+else:
+    print("No Answer")
+    print(0)
+```
+
+### E. 哥德巴赫猜想
+
+**题目描述**
+
+输入一个偶数 N*，验证 4∼*N 所有偶数是否符合哥德巴赫猜想：任一大于 22 的偶数都可写成两个质数之和。如果一个数不止一种分法，则输出第一个加数相比其他分法最小的方案。例如 10，10=3+7=5+5，则10=5+5 是错误答案。
+
+**输入格式**
+
+第一行输入一个正偶数N
+
+**输出格式**
+
+输出 N-2 / 2行。对于第 *i* 行：
+
+首先先输出正偶数2*i*+2，然后输出等号，再输出加和为2*i*+2 且第一个加数最小的两个质数，以加号隔开。
+
+**输入数据 1**
+
+```input1
+10
+```
+
+**输出数据 1**
+
+```output1
+4=2+2
+6=3+3
+8=3+5
+10=3+7
+```
+
+**代码如下**：
+
+```python
+
+def is_prime(n):
+    if n < 2:
+        return False
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+
+N = int(input())
+
+# 验证 4 ~ N 中的所有偶数
+for num in range(4, N + 1, 2):
+    # 我们只需要遍历从 2 ~ num/2 的整数
+    for i in range(2, num // 2 + 1):
+        if is_prime(i) and is_prime(num - i):
+            print(f"{num}={i}+{num-i}")
+            break
+```
+
+**完结撒花 ~~**
+
 ## - Chapter7
 
 > todo...
